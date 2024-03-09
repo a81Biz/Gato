@@ -1,0 +1,14 @@
+C:\DevOps\Desarrollos\Gato\Gato\bin\Debug\net6.0\Gato.exe
+C:\DevOps\Desarrollos\Gato\Gato\bin\Debug\net6.0\Gato.deps.json
+C:\DevOps\Desarrollos\Gato\Gato\bin\Debug\net6.0\Gato.runtimeconfig.json
+C:\DevOps\Desarrollos\Gato\Gato\bin\Debug\net6.0\Gato.dll
+C:\DevOps\Desarrollos\Gato\Gato\bin\Debug\net6.0\Gato.pdb
+C:\DevOps\Desarrollos\Gato\Gato\obj\Debug\net6.0\Gato.GeneratedMSBuildEditorConfig.editorconfig
+C:\DevOps\Desarrollos\Gato\Gato\obj\Debug\net6.0\Gato.AssemblyInfoInputs.cache
+C:\DevOps\Desarrollos\Gato\Gato\obj\Debug\net6.0\Gato.AssemblyInfo.cs
+C:\DevOps\Desarrollos\Gato\Gato\obj\Debug\net6.0\Gato.csproj.CoreCompileInputs.cache
+C:\DevOps\Desarrollos\Gato\Gato\obj\Debug\net6.0\Gato.dll
+C:\DevOps\Desarrollos\Gato\Gato\obj\Debug\net6.0\refint\Gato.dll
+C:\DevOps\Desarrollos\Gato\Gato\obj\Debug\net6.0\Gato.pdb
+C:\DevOps\Desarrollos\Gato\Gato\obj\Debug\net6.0\Gato.genruntimeconfig.cache
+C:\DevOps\Desarrollos\Gato\Gato\obj\Debug\net6.0\ref\Gato.dll
