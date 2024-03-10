@@ -1,4 +1,5 @@
 ﻿using Gato.Clases;
+using Gato.Enums;
 using Gato.Interface;
 
 public class Game
@@ -24,38 +25,38 @@ public class Game
     {
         currentPlayer = null;
         // Fase inicial
-        Console.WriteLine("¡Bienvenido al juego de Gato (Tres en Raya)!");
+        Console.WriteLine(GameMessages.Welcome);
 
-        Console.WriteLine("¿Desea jugar contra la IA (1) o contra otro jugador (2)?");
-        string input = Console.ReadLine();
+        Console.WriteLine(GameMessages.SelectOpponent);
+        string? input = Console.ReadLine();
 
-        if (input == "1")
+        if (input == OpponentType.IA.ToString())
         {
             this._isAgainstAI = true;
         }
-        else if (input == "2")
+        else if (input == OpponentType.Player.ToString())
         {
             _isAgainstAI = false;
         }
         else
         {
-            Console.WriteLine("Opción no válida. Saliendo del juego.");
+            Console.WriteLine(GameMessages.NotValidOption);
             return;
         }
 
-        Console.WriteLine("Ingrese el nombre del primer jugador:");
+        Console.WriteLine(GameMessages.SetFirstPlayerName);
         _player1Name = Console.ReadLine();
 
         if (!_isAgainstAI)
         {
-            Console.WriteLine("Ingrese el nombre del segundo jugador:");
+            Console.WriteLine(GameMessages.SetSecondPlayerName);
             _player2Name = Console.ReadLine();
         }
 
         // Desarrollo del juego
         _board = new Board();
-        _player1 = new HumanPlayer('X', _player1Name);
-        _player2 = !_isAgainstAI ? new HumanPlayer('O', _player2Name) : new ComputerPlayer('O');
+        _player1 = new HumanPlayer(Symbol.ex, _player1Name);
+        _player2 = !_isAgainstAI ? new HumanPlayer(Symbol.o, _player2Name) : new ComputerPlayer(Symbol.o);
         
 
     }
@@ -69,10 +70,10 @@ public class Game
             // Fase de turno
             Console.Clear();
 
-            Console.WriteLine("Casillas Disponibles:");
+            Console.WriteLine(GameMessages.AvailableBoxes);
             _board.DisplayBoardNumbers();
 
-            Console.WriteLine("Jugadas Hechas:");
+            Console.WriteLine(GameMessages.PlaysMade);
             _board.DisplayBoard(true);
 
             int move = currentPlayer.MakeMove(_board);
@@ -83,7 +84,7 @@ public class Game
             if (_board.IsWinner(currentPlayer.Symbol))
             {
                 Console.Clear();
-                RepeatOrClose("W");
+                RepeatOrClose();
 
             }
 
@@ -92,7 +93,7 @@ public class Game
             {
                 Console.Clear();
 
-                RepeatOrClose("E");
+                RepeatOrClose(ResultGame.tie);
             }
 
 
@@ -104,10 +105,10 @@ public class Game
     {
         Console.Clear();
 
-        Console.WriteLine("Jugadas Hechas:");
+        Console.WriteLine(GameMessages.PlaysMade);
         _board.DisplayBoard(true);
 
-        Console.WriteLine("Gracias por jugar. ¡Hasta la próxima!");
+        Console.WriteLine(GameMessages.ThanksForPlaying);
     }
 
     private IPlayer ChooseStartingPlayer()
@@ -134,10 +135,10 @@ public class Game
 
         currentPlayer = _isPlayer1Turn ? _player1 : _player2;
 
-        Console.WriteLine($"{currentPlayer.Name} comienza el juego.");
+        Console.WriteLine(GameMessages.PlayerStarting(currentPlayer.Name));
         while (true)
         {
-            Console.WriteLine($"Oprima cualquier tecla para continuar");
+            Console.WriteLine(GameMessages.PressAnyKey);
             input = Console.ReadKey(true).Key.ToString().ToUpper();
             break;
         }
@@ -146,29 +147,29 @@ public class Game
 
     }
 
-    public void RepeatOrClose(string gameResult)
+    public void RepeatOrClose(char gameResult = '\0')
     {
 
-        string result = gameResult == "E" ? "¡Empate! El juego ha terminado sin ganador." : $"¡El Jugador {currentPlayer.Name} ha ganado!";
+        string result = gameResult == ResultGame.tie ? GameMessages.TiedGame : GameMessages.GameWon(currentPlayer.Name);
 
 
-        Console.WriteLine("Jugadas Hechas:");
+        Console.WriteLine(GameMessages.PlaysMade);
         _board.DisplayBoard(true);
 
         Console.WriteLine(result);
 
-        Console.WriteLine("Cerrar ventana? Oprima S");
-        Console.WriteLine("Repetir partida? Oprima R");
+        Console.WriteLine(GameMessages.CloseWindow);
+        Console.WriteLine(GameMessages.RepeatGame);
 
         // Esperamos a que el usuario presione S o R
         while (true)
         {
             input = Console.ReadKey(true).Key.ToString().ToUpper();
-            if (input == "S")
+            if (input == Symbol.CloseWindow.ToString())
             {
                 Environment.Exit(0);
             }
-            else if (input == "R")
+            else if (input == Symbol.Repeat.ToString())
             {
                 _repeatGame = true;
                 break;

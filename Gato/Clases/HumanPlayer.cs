@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Gato.Enums;
 using Gato.Interface;
 
 namespace Gato.Clases
@@ -23,11 +24,11 @@ namespace Gato.Clases
 
         public int MakeMove(Board board)
         {
-            Console.Write($"Jugador {Name}, ingrese su movimiento (1-9): ");
+            Console.Write(GameMessages.EnterYourMove(Name));
             int move;
             while (!int.TryParse(Console.ReadLine(), out move) || !board.IsValidMove(move))
             {
-                Console.WriteLine("Movimiento no válido. Inténtelo de nuevo.");
+                Console.WriteLine(GameMessages.InvalidMove);
             }
             return move;
         }

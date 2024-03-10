@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Gato.Enums;
 using Gato.Interface;
 
 namespace Gato.Clases
@@ -17,7 +18,7 @@ namespace Gato.Clases
         public ComputerPlayer(char symbol)
         {
             Symbol = symbol;
-            Name = "IA";
+            Name = OpponentType.IAName;
             Turn = 0;
         }
 
